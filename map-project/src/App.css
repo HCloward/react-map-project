@@ -1,0 +1,284 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 52em;
+  display: flex;
+}
+
+header {
+  background-color: #a71f4b;
+  padding-top: 4em;
+  padding-bottom: 1em;
+}
+
+h1 {
+  text-align: left;
+  margin-left: 1.5em;
+  margin-top: -1em;
+  font-family: 'Bree Serif', serif;
+  color: #ffffff;
+}
+
+button {
+  height: 2em;
+  font-family: 'Bree Serif', serif;
+  font-size: 1em;
+  padding: 0 10px 4px 10px;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #a71f3b;
+  border: none;
+}
+
+#map {
+  display: block;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.dest-list-panel {
+  display: none;
+}
+
+li {
+  list-style-type: none;
+  color: #ffffff;
+}
+
+#menuToggle
+{
+  display: block;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+input#checkbox
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  -webkit-touch-callout: none;
+}
+
+input#filterField {
+  margin-left: 2.4em;
+  height: 2.4em;
+  border: none;
+  padding: 0;
+  width: 14em;
+  margin-top: 1em;
+}
+
+span:first-of-type {
+  margin-top: -4em;
+}
+
+span
+{
+  display: none;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #ffffff;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+  margin-left: 3em;
+}
+
+span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #ffffff;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu
+{
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  transform-origin: 0% 0%;
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+
+#menuToggle input:checked ~ #menu
+{
+  transform: none;
+}
+
+  .dest-list-panel {
+    background: lightseagreen;
+    line-height: 2;
+    padding: 10px 10px 30px 10px;
+    text-align: left;
+    width: 20%;
+    height: 100%;
+  }
+
+
+
+@media screen and (min-width: 526px) and (max-width: 1704px) {
+  #menu {
+    -webkit-transform: translate(-100%, 0);
+    -ms-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
+  }
+  .container {
+    height: 56.3em;
+    max-height: 78em;
+  }
+
+  #menuToggle input:checked ~ #menu {
+    width: 23em;
+    transform: none;
+    position: absolute;
+    margin: 42px 0 0 -1px;
+    padding: 19px 10px 19px 0px;
+    background: lightseagreen;
+  }
+
+  h1 {
+    margin-left: 3.5em;
+  }
+
+  .dest-list-panel {
+    background: lightseagreen;
+    border: 1px solid black;
+    border-radius: 3px;
+    line-height: 2;
+    text-align: left;
+    width: 26%;
+    height: 100%;
+  }
+
+  input#filterField {
+    width: 58%;
+  }
+
+  #menuToggle {
+    margin-left: -1.3em;
+    width: 0%;
+  }
+
+  span {
+    display: block;
+    margin-left: 4em;
+  }
+
+  #menu {
+    margin-left: -10em;
+  }
+
+  span:first-of-type {
+    margin-top: -5em;
+  }
+
+  input#checkbox {
+    cursor: pointer;
+  }
+
+}
+
+@media screen and (max-width: 525px) {
+  #menu {
+    position: absolute;
+    width: 19em;
+    margin: 60px 0 0 0px;
+    padding: 19px 10px 19px 0px;
+    -webkit-transform: translate(-100%, 0);
+    -ms-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
+    background: lightseagreen;
+  }
+
+  span {
+    display: block;
+    margin-left: 3em;
+  }
+
+  input#checkbox {
+    cursor: pointer;
+    height: 60px;
+
+  }
+
+  .dest-list-panel {
+    display: none;
+    padding: 0;
+  }
+
+  #menuToggle {
+    margin-left: 0em;
+    width: 0%;
+  }
+
+  input#filterField {
+    margin-left: 3em;
+  }
+
+  h1 {
+    margin-left: 3.5em;
+  }
+
+  span:first-of-type {
+    margin-top: -5.5em;
+  }
+
+}
