@@ -23,12 +23,13 @@ h1 {
   color: #ffffff;
 }
 
-button {
-  height: 2em;
+label {
+  display: inline-block;
+  margin-left: 2.4em;
+  height: 2.0em;
   font-family: 'Bree Serif', serif;
   font-size: 1em;
   padding: 0 10px 4px 10px;
-  cursor: pointer;
   color: #ffffff;
   background-color: #a71f3b;
   border: none;
@@ -72,7 +73,6 @@ input#checkbox
 }
 
 input#filterField {
-  margin-left: 2.4em;
   height: 2.4em;
   border: none;
   padding: 0;
@@ -172,6 +172,22 @@ input:checked ~ span:nth-last-child(2)
     height: 100%;
   }
 
+
+  .trail-img {
+    float: right;
+    margin-left: 1em;
+  }
+  .trail-title {
+    border: 0px solid;
+    border-radius: 10px;
+    background-color: #DDDDFF;
+    text-align: center;
+    font-weight: bold;
+  }
+  .trail-summary {
+    text-indent: 2em;
+    text-align: justify;
+  }
 
 
 @media screen and (min-width: 526px) and (max-width: 1704px) {

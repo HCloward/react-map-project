@@ -7,7 +7,12 @@ import sortBy from 'sort-by'
 class Sidebar extends Component {
 
     state = {
-        query: ''
+        query: '',
+        marker: {}
+    }
+
+    updateMarker = (id, marker)=>{
+        this.setState((state)=>{state.marker[id] = marker; return state})
     }
 
     updateQuery = (query) => {
@@ -27,16 +32,24 @@ class Sidebar extends Component {
 
         return (
             <div id="menu">
+                <label>Filter</label>
                 <input 
+                    tabIndex="0"
                     id="filterField" 
                     type="text"
                     placeholder="Search trails"
                     value={this.state.query}
                     onChange={(event) => this.updateQuery(event.target.value)}
                     ></input>
-                <button>Filter</button>
                 <ul className="dest-list">
-                    {showingTrails.map((trail)=><Marker key={trail.id} map={this.props.map} trail={trail} />)}
+                    {showingTrails.map((trail, i)=><Marker
+                        ti={i+1}
+                        key={trail.id}
+                        map={this.props.map}
+                        marker={this.state.marker[trail.id]}
+                        trail={trail}
+                        updateMarker={this.updateMarker}
+                    />)}
                 </ul>
             </div>
         );
