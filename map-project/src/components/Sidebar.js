@@ -32,7 +32,7 @@ class Sidebar extends Component {
 
         return (
             <div id="menu">
-                <label>Filter</label>
+                <label htmlFor="filterField">Filter</label>
                 <input 
                     tabIndex="0"
                     id="filterField" 

@@ -25,13 +25,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div role="main" className="App">
       <header>
         <h1>North Georgia Hiking Trails</h1>
       </header>
         <div className="container">
             <div role="navigation" id="menuToggle" className="dest-list-panel">
-              <input id="checkbox" type="checkbox" />
+              <input id="checkbox" role="navigation" tabIndex="0" name="hamburger icon" aria-label="Hamburger icon" type="checkbox" />
                   <span></span>
                   <span></span>
                   <span></span>

@@ -14,6 +14,17 @@ class Map extends Component {
         script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAzSuH6ARrI3kZbmdHPwb8KwUASBrUNhvk&callback=initMap";
         script.async = true;
         script.defer = true;
+        window.console["error"] = e=>{
+            if (e.indexOf("request quota") === -1) {
+                let errorMsg = `
+                    <div class="error-msg">
+                        <h1>Error!</h1>
+                        <p>Unfortunately the map failed to load. Please check your connection and reload this page.</p>
+                    </div>
+                `;
+                document.getElementById("map").innerHTML = errorMsg;
+            }
+        };
         document.getElementsByTagName("head")[0].appendChild(script);
         window.initMap = this.initMap;
     }

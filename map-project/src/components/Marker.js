@@ -39,40 +39,50 @@ class Marker extends Component {
     }
 
     getTrailInfo = function() {
-        let map = this.props.map, marker = this.props.marker;
+        let map = this.props.map, marker = this.props.marker, trail, content, infowindow;
         fetch("https://www.hikingproject.com/data/get-trails-by-id?ids=" + this.props.trail.id + "&key=200367802-6611b7dc45a485188fb817b905b4cc86").then((response)=>{
-            
-            response.text().then((r)=>{
-                
-                let trail = JSON.parse(r).trails[0];
-                let content = `
-                    <img class="trail-img" src="` + trail.imgSmall + `" alt="` + trail.name + `">
-                    <div class="trail-title">` + trail.name + `</div>
-                    <div class="trail-summary">` + trail.summary + `</div>
+            if (response.ok) {
+                response.text().then((r)=>{
+                    trail = JSON.parse(r).trails[0];
+                    content = `
+                        <img class="trail-img" src="` + trail.imgSmall + `" alt="` + trail.name + `">
+                        <div class="trail-title">` + trail.name + `</div>
+                        <div class="trail-summary">` + trail.summary + `</div>
                     `;
-                let infowindow = new window.google.maps.InfoWindow({
-                    content: content
-                });
-                marker.addListener("click", ()=>{
-                    if (marker.getAnimation() !== null) {
-                        marker.setAnimation(null);
-                        infowindow.close();
-                    } else {
-                        infowindow.open(map, marker);
-                        marker.setAnimation(window.google.maps.Animation.BOUNCE);
-                    }
-                });
-                window.document.getElementById(this.props.trail.id).addEventListener("click", ()=>{
-                    if (marker.getAnimation() !== null) {
-                        marker.setAnimation(null);
-                        infowindow.close();
-                    } else {
-                        infowindow.open(map, marker);
-                        marker.setAnimation(window.google.maps.Animation.BOUNCE);
-                    }
+                    infowindow = new window.google.maps.InfoWindow({
+                        content: content
+                    });
                 })
+            }
+        }).catch(function(error) {
+            content = `
+                <div class="trail-title">Error!</div>
+                <div class="trail-summary">The Hiking Project API is not loading.</div>
+            `;
+            infowindow = new window.google.maps.InfoWindow({
+                content: content
             });
+
         });
+
+        marker.addListener("click", ()=>{
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+                infowindow.close();
+            } else {
+                infowindow.open(map, marker);
+                marker.setAnimation(window.google.maps.Animation.BOUNCE);
+            }
+        });
+        window.document.getElementById(this.props.trail.id).addEventListener("click", ()=>{
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+                infowindow.close();
+            } else {
+                infowindow.open(map, marker);
+                marker.setAnimation(window.google.maps.Animation.BOUNCE);
+            }
+        })
     }
 
     showTrailInfo = function() {

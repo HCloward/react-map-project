@@ -190,6 +190,31 @@ input:checked ~ span:nth-last-child(2)
   }
 
 
+  #map {
+    background-color: lightGrey;
+  }
+  .error-msg {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    width: 50%;
+    height: 30%;
+    background-color: #DDDDDD;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 1em;
+  }
+  .error-msg > h1 {
+    margin: 0;
+    background-color: #a71f4b;
+    border: 0px solid;
+    border-radius: 20px;
+    text-align: center;
+    color: #FFFFFF;
+  }
+
+
+
 @media screen and (min-width: 526px) and (max-width: 1704px) {
   #menu {
     -webkit-transform: translate(-100%, 0);
